@@ -1,0 +1,86 @@
+﻿@model XSIS.Shop.viewModel.CustomerViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    <div class="card">
+        <div class="card-body card-padding">
+            <div class="form-horizontal">
+                <h4>Customer</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    <div class="fg-line">
+
+                        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "input-sm form-control fg-input", @placeholder = "Masukan disini" } })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                </div>              
+                
+                <div class="form-group">
+                    <div class="fg-line">
+                        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "input-sm form-control fg-input", @placeholder = "Masukan disini" } })
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                    </div>
+                </div>  
+
+                <div class="form-group">
+                    <div class="fg-line">
+                        @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "input-sm form-control fg-input", @placeholder = "Masukan disini" } })
+                        @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                    </div>
+                </div>  
+
+                <div class="form-group">
+                    <div class="fg-line">
+                        @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "input-sm form-control fg-input", @placeholder = "Masukan disini" } })
+                        @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+                    </div>
+                </div> 
+
+                <div class="form-group">
+                    <div class="fg-line">
+                        @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "input-sm form-control fg-input", @placeholder = "Masukan disini" } })
+                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                    </div>
+                </div> 
+                <div class="form-group">
+                    <div class="fg-line">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "input-sm form-control fg-input", @placeholder = "Masukan disini" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div> 
+                
+                <div class="form-group">
+                    <div class="fg-line">
+                        <input type="submit" value="Create" class="btn btn-default"/>
+                        <a href="@Url.Action("Index", "Customers")" class="btn btn-primary" style="height:auto">Back To List</a>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>   
+}
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")        
+        }        

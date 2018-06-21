@@ -1,0 +1,4 @@
+D:\Kerja\Bootcampt PT. Xsis C# Programming\WEB\XSIS.7JuniSHOP.WEBAPPS\XSIS.Shop.viewModel\bin\Debug\XSIS.Shop.viewModel.dll
+D:\Kerja\Bootcampt PT. Xsis C# Programming\WEB\XSIS.7JuniSHOP.WEBAPPS\XSIS.Shop.viewModel\bin\Debug\XSIS.Shop.viewModel.pdb
+D:\Kerja\Bootcampt PT. Xsis C# Programming\WEB\XSIS.7JuniSHOP.WEBAPPS\XSIS.Shop.viewModel\obj\Debug\XSIS.Shop.viewModel.dll
+D:\Kerja\Bootcampt PT. Xsis C# Programming\WEB\XSIS.7JuniSHOP.WEBAPPS\XSIS.Shop.viewModel\obj\Debug\XSIS.Shop.viewModel.pdb

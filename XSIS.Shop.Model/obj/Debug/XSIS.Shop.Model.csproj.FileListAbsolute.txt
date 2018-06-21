@@ -1,0 +1,9 @@
+D:\Kerja\Bootcampt PT. Xsis C# Programming\WEB\XSIS.7JuniSHOP.WEBAPPS\XSIS.Shop.Model\bin\Debug\XSIS.Shop.Model.dll.config
+D:\Kerja\Bootcampt PT. Xsis C# Programming\WEB\XSIS.7JuniSHOP.WEBAPPS\XSIS.Shop.Model\bin\Debug\XSIS.Shop.Model.dll
+D:\Kerja\Bootcampt PT. Xsis C# Programming\WEB\XSIS.7JuniSHOP.WEBAPPS\XSIS.Shop.Model\bin\Debug\XSIS.Shop.Model.pdb
+D:\Kerja\Bootcampt PT. Xsis C# Programming\WEB\XSIS.7JuniSHOP.WEBAPPS\XSIS.Shop.Model\bin\Debug\EntityFramework.dll
+D:\Kerja\Bootcampt PT. Xsis C# Programming\WEB\XSIS.7JuniSHOP.WEBAPPS\XSIS.Shop.Model\bin\Debug\EntityFramework.SqlServer.dll
+D:\Kerja\Bootcampt PT. Xsis C# Programming\WEB\XSIS.7JuniSHOP.WEBAPPS\XSIS.Shop.Model\bin\Debug\EntityFramework.xml
+D:\Kerja\Bootcampt PT. Xsis C# Programming\WEB\XSIS.7JuniSHOP.WEBAPPS\XSIS.Shop.Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\Kerja\Bootcampt PT. Xsis C# Programming\WEB\XSIS.7JuniSHOP.WEBAPPS\XSIS.Shop.Model\obj\Debug\XSIS.Shop.Model.dll
+D:\Kerja\Bootcampt PT. Xsis C# Programming\WEB\XSIS.7JuniSHOP.WEBAPPS\XSIS.Shop.Model\obj\Debug\XSIS.Shop.Model.pdb

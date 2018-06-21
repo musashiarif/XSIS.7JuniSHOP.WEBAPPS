@@ -1,0 +1,56 @@
+﻿@model XSIS.Shop.viewModel.OrderViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div class="table-responsive">
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>@Html.DisplayNameFor(model => model.OrderNumber)</dt>
+        <dd>@Html.DisplayFor(model => model.OrderNumber)<dt>
+        <dt>@Html.DisplayNameFor(model => model.OrderDate)</dt>
+        <dd>@Html.DisplayFor(model => model.OrderDate)</dd>
+        <dt>@Html.DisplayNameFor(model => model.CustomerName)</dt>
+        <dd>@Html.DisplayFor(model => model.CustomerName)</dd>
+        <br>
+        <br>
+        <h4>Details Item</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nama Product</th>
+                    <th>Harga Unit</th>
+                    <th>Quantity</th>
+                    <th>Total Amount</th>
+                </tr>
+            </thead>
+            @foreach (var item in Model.OrderItem)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.ProductName)</td>           
+                    <td>@Html.DisplayFor(modelItem => item.UnitPrice)</td>                    
+                    <td>@Html.DisplayFor(modelItem => item.Quantity)</td>                    
+                    <td>@Html.DisplayFor(modelItem => item.TotalAmount)</td>                    
+                </tr>
+            }
+        </table>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalAmount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalAmount)
+        </dd>   
+
+    </dl>
+</div>
+
+
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+    <a href="@Url.Action("Index","Orders", new { id = Model.Id })" class="btn btn-default"> <i class="list-group"></i> Back To List</a>
+</p>

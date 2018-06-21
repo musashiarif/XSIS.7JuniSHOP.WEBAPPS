@@ -1,0 +1,14 @@
+D:\Kerja\Bootcampt PT. Xsis C# Programming\WEB\XSIS.7JuniSHOP.WEBAPPS\XSIS.Shop.Repository\bin\Debug\XSIS.Shop.Repository.dll.config
+D:\Kerja\Bootcampt PT. Xsis C# Programming\WEB\XSIS.7JuniSHOP.WEBAPPS\XSIS.Shop.Repository\bin\Debug\XSIS.Shop.Repository.dll
+D:\Kerja\Bootcampt PT. Xsis C# Programming\WEB\XSIS.7JuniSHOP.WEBAPPS\XSIS.Shop.Repository\bin\Debug\XSIS.Shop.Repository.pdb
+D:\Kerja\Bootcampt PT. Xsis C# Programming\WEB\XSIS.7JuniSHOP.WEBAPPS\XSIS.Shop.Repository\bin\Debug\EntityFramework.dll
+D:\Kerja\Bootcampt PT. Xsis C# Programming\WEB\XSIS.7JuniSHOP.WEBAPPS\XSIS.Shop.Repository\bin\Debug\EntityFramework.SqlServer.dll
+D:\Kerja\Bootcampt PT. Xsis C# Programming\WEB\XSIS.7JuniSHOP.WEBAPPS\XSIS.Shop.Repository\bin\Debug\XSIS.Shop.Model.dll
+D:\Kerja\Bootcampt PT. Xsis C# Programming\WEB\XSIS.7JuniSHOP.WEBAPPS\XSIS.Shop.Repository\bin\Debug\XSIS.Shop.viewModel.dll
+D:\Kerja\Bootcampt PT. Xsis C# Programming\WEB\XSIS.7JuniSHOP.WEBAPPS\XSIS.Shop.Repository\bin\Debug\XSIS.Shop.Model.pdb
+D:\Kerja\Bootcampt PT. Xsis C# Programming\WEB\XSIS.7JuniSHOP.WEBAPPS\XSIS.Shop.Repository\bin\Debug\XSIS.Shop.viewModel.pdb
+D:\Kerja\Bootcampt PT. Xsis C# Programming\WEB\XSIS.7JuniSHOP.WEBAPPS\XSIS.Shop.Repository\bin\Debug\EntityFramework.xml
+D:\Kerja\Bootcampt PT. Xsis C# Programming\WEB\XSIS.7JuniSHOP.WEBAPPS\XSIS.Shop.Repository\bin\Debug\EntityFramework.SqlServer.xml
+D:\Kerja\Bootcampt PT. Xsis C# Programming\WEB\XSIS.7JuniSHOP.WEBAPPS\XSIS.Shop.Repository\obj\Debug\XSIS.Shop.Repository.csprojResolveAssemblyReference.cache
+D:\Kerja\Bootcampt PT. Xsis C# Programming\WEB\XSIS.7JuniSHOP.WEBAPPS\XSIS.Shop.Repository\obj\Debug\XSIS.Shop.Repository.dll
+D:\Kerja\Bootcampt PT. Xsis C# Programming\WEB\XSIS.7JuniSHOP.WEBAPPS\XSIS.Shop.Repository\obj\Debug\XSIS.Shop.Repository.pdb
