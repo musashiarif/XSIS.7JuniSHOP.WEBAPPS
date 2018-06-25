@@ -11,7 +11,7 @@ namespace XSIS.SHOP.WEBAPPS.Controllers
 {
     public class OrderItemController : Controller
     {
-        private OrderRepository service = new OrderRepository();
+        private OrderItemRepositori service = new OrderItemRepositori();
         private ShopDBEntities db = new ShopDBEntities();
         // GET: OrderItem
         public ActionResult CreateItem()
@@ -20,11 +20,25 @@ namespace XSIS.SHOP.WEBAPPS.Controllers
             return PartialView();
         }
 
-        //public ActionResult Add(OrderItemViewModel OritVM)
-        //{
-        //    var order = service.temporaryList(OritVM,(List<OrderItemViewModel>)TempData["List"]);
-        //    TempData["List"] = order.
-        //    return OritVM;
-        //}
+        public ActionResult Add(OrderItemViewModel OritVM)
+        {
+            var order = service.temporaryList(OritVM, (List<OrderItemViewModel>)TempData["List"]);
+            TempData["List"] = order.OrderItem;
+            TempData.Keep();
+            return Json(order, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult get(OrderViewModel order)
+        {
+            List<OrderItemViewModel> list = (List<OrderItemViewModel>)TempData["List"];
+            TempData.Keep();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult removeItem(int id)
+        {
+            List<OrderItemViewModel> list = service.RemoveItem(id, (List<OrderItemViewModel>)TempData["List"]);
+            TempData["List"] = list;
+            TempData.Keep();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
     }
 }

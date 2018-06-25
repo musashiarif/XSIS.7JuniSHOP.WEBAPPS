@@ -6,179 +6,189 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Order</h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">        
-            @Html.LabelFor(model => model.OrderDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.OrderDate, new { htmlAttributes = new { @class = "form-control date-picker" , @placeholder = "Klik Disini" } })
-                @Html.ValidationMessageFor(model => model.OrderDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.OrderNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.OrderNumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OrderNumber, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CustomerId, "CustomerId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("CustomerId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CustomerId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        
-        <div class="form-group">
-            @Html.Label("Detail Item", htmlAttributes: new { @class = "control-label col-md-2" })
-
-            <a data-toggle="modal" id="modalOrderItem" href="" class="btn btn-sm btn-primary">
-                Add Item
-            </a>
-            <div class="modal fade" id="modalDefault" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        
+        <div class="card">
+            <div class="card-header">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.OrderDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.OrderDate, new { htmlAttributes = new { @class = "form-control date-picker", @placeholder = "Klik Disini" } })
+                        @Html.ValidationMessageFor(model => model.OrderDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Nama Product</th>
-                        <th>Harga Unit</th>
-                        <th>Quantity</th>
-                        <th>Harga</th>
-                    </tr>
-                </thead>
-                @*@foreach (var item in Model.product)
-                {
-                    <tr>
-                        <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
-
-                        <td>@Html.DisplayFor(modelItem => item.UnitPrice)</td>
-
-                        <td>@Html.DisplayFor(modelItem => item.Package)</td>
-
-                        <td>@Html.DisplayFor(modelItem => item.IsDiscontinued)</td>
-
-                    </tr>
-                }*@
-            </table>
-        </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.TotalAmount, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TotalAmount, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TotalAmount, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.OrderNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.OrderNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.OrderNumber, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CustomerId, "CustomerId", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("CustomerId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CustomerId, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-            </div>
+
+                <div class="form-group">
+                    @Html.Label("Detail Item", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    <a data-toggle="modal" id="modalOrderItem" href="" class="btn btn-sm btn-primary">
+                        Add Item
+                    </a>
+                    <div class="modal fade" id="modalDefault" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-10">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Nama Product</th>
+                                    <th>Harga Unit</th>
+                                    <th>Quantity</th>
+                                    <th>Harga</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.TotalAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TotalAmount, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TotalAmount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" value="Create" class="btn btn-primary" >Create</button>
+                    </div>
+                </div>
+                <div>
+                    <a href="@Url.Action("Index", "Orders")" class="btn btn-primary" style="height:auto">Back To List</a>
+                </div>
+            </div>            
         </div>
+    </div>
+
+        
 }
-<div>
-    <a href="@Url.Action("Index", "Orders")" class="btn btn-primary" style="height:auto">Back To List</a>
-
-</div>
 @section Scripts
 {
     <script>
+        window.onload = function () {
+            loadData();
+        }
+                    $("#modalOrderItem").click(
+                    function () {
+                        $.ajax(
+                        {
+                            type: "get",
+                            url: "/OrderItem/CreateItem/",
+                            success: function (result) {
+                                $(".modal-content").html(result);
+                                $("#modalDefault").modal("show");
+                            }
+                        })
+                    })
 
-    $("#modalOrderItem").click(
-    function()
-    {
-        $.ajax(
-        {
-            type: "get",
-            url: "/OrderItem/CreateItem/",
-            success: function (result)
-            {
-                $(".modal-content").html(result);
-                $("#modalDefault").modal("show");
-            }
-        })
-    })
-    function loadDataOrderItem() {
-        $.ajax({
-
-        })
-    }
-    //function loadData() {
-    //    $.ajax({
-    //        url: "/OrderItem/Get",
-    //        type: "GET",
-    //        contentType: "application/json;charset=utf-8",
-    //        dataType: "json",
-    //        success: function (result) {
-    //            var html = '';
-    //            var totalHarga = 0;
-    //            $.each(result, function (key, item) {
-    //                html += '<tr>';
-    //                html += '<td>' + item.ProductName + '</td>';
-    //                html += '<td>' + item.UnitPrice + '</td>';
-    //                html += '<td>' + item.Quantity + '</td>';
-    //                html += '<td>' + item.TotalAmount + '</td>';
-    //                html += '<td><a onclick="Delete(' + item.Id + ')">Delete</a></td>';
-    //                html += '</tr>';
-    //                totalHarga += item.TotalAmount;
-    //            });
-    //            $('#tbody').html(html);
-    //            $('#TotalAmount').val(totalHarga);
-    //        },
-    //        error: function (errormessage) {
-    //            alert(errormessage.responseText);
-    //        }
-    //    });
-    //}
-    //function Add() {
-    //    var res = validate();
-    //    if (res == false) {
-    //        alert('Hehe error add');
-    //        return false;
-    //    }
-    //    var empObj = {
-    //        ProductId: $('#ProductId').val(),
-    //        Quantity: $('#Quantity').val(),
-    //    };
-    //    $.ajax({
-    //        url: "/OrderItem/Add",
-    //        data: JSON.stringify(empObj),
-    //        type: "POST",
-    //        contentType: "application/json;charset=utf-8",
-    //        dataType: "json",
-    //        success: function (result) {
-    //            loadData();
-    //            $('#modal-container').modal('hide');
-    //        },
-    //        error: function (errormessage) {
-    //            alert(errormessage.responseText);
-    //        }
-    //    });
-    //}
-    //function validate() {
-    //    var isValid = true;
-    //    if ($('#Quantity').val().trim() == "") {
-    //        $('#Quantity').val(1).focusin().focusout();
-    //    }
-    //    return isValid;
-    //}
-    </script>
+                    function loadData() {
+                        $.ajax({
+                            url: "/OrderItem/get",
+                            type: "GET",
+                            contentType: "application/json;charset=utf-8",
+                            dataType: "json",
+                            success: function (result) {
+                                var html = '';
+                                var totalHarga = 0;
+                                $.each(result, function (key, item) {
+                                    html += '<tr>';
+                                    html += '<td>' + item.ProductName + '</td>';
+                                    html += '<td>' + item.UnitPrice + '</td>';
+                                    html += '<td>' + item.Quantity + '</td>';
+                                    html += '<td>' + item.TotalAmount + '</td>';
+                                    html += '<td><a onclick="Delete(' + item.Id + ')" class="btn btn-danger">Delete</a></td>';
+                                    html += '</tr>';
+                                    totalHarga += item.TotalAmount;
+                                });
+                                $('#tbody').html(html);
+                                $('#TotalAmount').val(totalHarga);
+                            },
+                            error: function (errormessage) {
+                                alert(errormessage.responseText);
+                            }
+                        });
+                    }
+                    function Add() {
+                        var res = validate();
+                        if (res == false) {
+                            alert('Hehe error add');
+                            return false;
+                        }
+                        var empObj = {
+                            ProductId: $('#ProductId').val(),
+                            Quantity: $('#Quantity').val(),
+                        };
+                        $.ajax({
+                            url: "/OrderItem/Add",
+                            data: JSON.stringify(empObj),
+                            type: "POST",
+                            contentType: "application/json;charset=utf-8",
+                            dataType: "json",
+                            success:function (result) {
+                                loadData();
+                                $('#modal-container').modal('hide');
+                            },
+                            error: function (errormessage) {
+                                alert(errormessage.responseText);
+                            }
+                        });
+                    }
+                    function validate() {
+                        var isValid = true;
+                        if ($('#Quantity').val().trim() == "") {
+                            $('#Quantity').val(1).focusin().focusout();
+                        }
+                        return isValid;
+                    }
+                    function Delete(id) {
+                        var tanya = confirm("Anda yakin data ini dihapus? ");
+                        if (tanya) {
+                            $.ajax({
+                                url: "/OrderItem/RemoveItem/" + id,
+                                type: "POST",
+                                contentType: "application/json;charset=UTF-8",
+                                dataType: "json",
+                                success: function (result) {
+                                    loadData();
+                                },
+                                error: function (errormessage) {
+                                    alert(errormessage.responseText);
+                                }
+                            })
+                        }
+                    }
+</script>               
 }

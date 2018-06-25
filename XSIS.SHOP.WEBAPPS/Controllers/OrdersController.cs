@@ -30,9 +30,13 @@ namespace XSIS.SHOP.WEBAPPS.Controllers
             HttpResponseMessage respon = client.GetAsync(ApiAccess).Result;
 
             string result = respon.Content.ReadAsStringAsync().Result.ToString();
-            List<OrderViewModel> ordVM = JsonConvert.DeserializeObject<List<OrderViewModel>>(result);
+            var ordVM = JsonConvert.DeserializeObject<List<OrderViewModel>>(result);
 
-            ViewBag.CustomerId = new SelectList(service.GetAllCustomer(), "Id", ("namaLengkap"));
+            ApiAccess = ApiUrl + "api/OrderApi/Customer/";
+            respon = client.GetAsync(ApiAccess).Result;
+            string resultCustomer = respon.Content.ReadAsStringAsync().Result.ToString();
+            var cust = JsonConvert.DeserializeObject<List<CustomerViewModel>>(resultCustomer);
+            ViewBag.CustomerId = new SelectList(cust, "Id", "namaLengkap");
             return View(ordVM.ToList());            
         }
         [HttpPost]
@@ -40,14 +44,18 @@ namespace XSIS.SHOP.WEBAPPS.Controllers
         {
 
             string replaceDate = Search["dateTime"].Replace("/", "-");
-            string ApiSearch = ApiUrl + "api/OrderApi/SearchOrders/" + Search["orderNumber"] + "|" + replaceDate + "|" + Search["CustomerId"];
-            HttpClient searchApi = new HttpClient();
-            HttpResponseMessage searchRespon = searchApi.GetAsync(ApiSearch).Result;
+            string ApiAccess = ApiUrl + "api/OrderApi/SearchOrders/" + Search["orderNumber"] + "|" + replaceDate + "|" + Search["CustomerId"];
+            HttpClient client = new HttpClient();
+            HttpResponseMessage respon = client.GetAsync(ApiAccess).Result;
 
-            string result = searchRespon.Content.ReadAsStringAsync().Result.ToString();
+            string result = respon.Content.ReadAsStringAsync().Result.ToString();
             var custVM = JsonConvert.DeserializeObject<List<OrderViewModel>>(result);
             //var custVM = service.SearchOrder(Search["orderNumber"], Search["dateTime"], Search["CustomerId"]);
-            ViewBag.CustomerId = new SelectList(service.GetAllCustomer(), "Id", ("namaLengkap"));
+            ApiAccess = ApiUrl + "api/OrderApi/Customer/";
+            respon = client.GetAsync(ApiAccess).Result;
+            string resultCustomer = respon.Content.ReadAsStringAsync().Result.ToString();
+            var cust = JsonConvert.DeserializeObject<List<CustomerViewModel>>(resultCustomer);
+            ViewBag.CustomerId = new SelectList(cust, "Id", "namaLengkap");
             return View(custVM.ToList());
 
         }
@@ -67,7 +75,7 @@ namespace XSIS.SHOP.WEBAPPS.Controllers
 
             string result = respon.Content.ReadAsStringAsync().Result.ToString();
             var orderVM = JsonConvert.DeserializeObject<OrderViewModel>(result);
-//            OrderViewModel orderVM = service.getDetailByID(idx);
+
             if (orderVM == null)
             {
                 return HttpNotFound();
@@ -78,8 +86,23 @@ namespace XSIS.SHOP.WEBAPPS.Controllers
         // GET: Orders/Create
         public ActionResult Create()
         {
-            ViewBag.CustomerId = new SelectList(db.Customer, "Id", "FirstName");
-            return View();
+            string ApiEndPoint = ApiUrl + "api/OrderApi/Create/";
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = client.GetAsync(ApiEndPoint).Result;
+            string resultList = response.Content.ReadAsStringAsync().Result.ToString();
+            var OrderVM = JsonConvert.DeserializeObject<OrderViewModel>(resultList);
+            if (TempData["List"] == null)
+            {
+                TempData["List"] = new List<OrderItemViewModel>();
+            }            
+            TempData.Keep();
+
+            string ApiAccess = ApiUrl + "api/OrderApi/Customer/";            
+            HttpResponseMessage respon = client.GetAsync(ApiAccess).Result;
+            string resultCustomer = respon.Content.ReadAsStringAsync().Result.ToString();
+            var cust = JsonConvert.DeserializeObject<List<CustomerViewModel>>(resultCustomer);
+            ViewBag.CustomerId = new SelectList(cust, "Id", "namaLengkap");
+            return View(OrderVM);
         }
 
         // POST: Orders/Create
@@ -89,13 +112,36 @@ namespace XSIS.SHOP.WEBAPPS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(OrderViewModel order)
         {
+            string ApiAccess;
+            HttpClient client = new HttpClient();
+            HttpResponseMessage respon;
+         
             if (ModelState.IsValid)
             {
-                service.createOrder(order);
-                return RedirectToAction("Index");
+                order.OrderItem = (List<OrderItemViewModel>)TempData["List"];
+
+                string json = JsonConvert.SerializeObject(order);
+                var buffer = System.Text.Encoding.UTF8.GetBytes(json);
+                var byteContent = new ByteArrayContent(buffer);
+                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                 ApiAccess = ApiUrl + "api/OrderApi/";                 
+                 respon = client.PostAsync(ApiAccess, byteContent).Result;
+
+                string result = respon.Content.ReadAsStringAsync().Result.ToString();
+                int success = int.Parse(result);
+                if (success == 1)
+                {
+                    return RedirectToAction("Index");
+                }
+                       
             }
 
-            ViewBag.CustomerId = new SelectList(db.Customer, "Id", "FirstName", order.CustomerId);
+            ApiAccess = ApiUrl + "api/OrderApi/Create/";
+            respon = client.GetAsync(ApiAccess).Result;
+            string resultCustomer = respon.Content.ReadAsStringAsync().Result.ToString();
+            var cust = JsonConvert.DeserializeObject<List<CustomerViewModel>>(resultCustomer);
+            ViewBag.CustomerId = new SelectList(cust, "Id", "namaLengkap");
             return View(order);
         }
 
@@ -158,15 +204,6 @@ namespace XSIS.SHOP.WEBAPPS.Controllers
             db.Order.Remove(order);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        }      
     }
 }

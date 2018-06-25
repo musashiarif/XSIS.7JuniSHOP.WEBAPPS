@@ -17,7 +17,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control date-picker", @placeholder = "Klik Disini" } })
+            @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -25,10 +25,15 @@
 
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-link">Add to Order</button>
-    <button type="button" class="btn btn-link" data-dismiss="modal">
+    <button type="button" id="btnAddOrder" class="btn btn-success">Add to Order</button>
+    <button type="button" class="btn btn-info" data-dismiss="modal">
         Close
     </button>
 </div>
 
-
+<script>
+        $("#btnAddOrder").click(function () {            
+            Add();
+            $("#modalDefault").modal("hide");
+        });
+</script>    

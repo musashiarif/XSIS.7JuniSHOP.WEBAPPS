@@ -70,14 +70,27 @@ namespace XSIS.Shop.Repository
                 return viewModel;
             }          
         }
+        //public void createOrder(OrderViewModel order)
+        //{
+        //    using (ShopDBEntities db = new ShopDBEntities())
+        //    {
+        //        Order model = new Order();
 
+        //        model.OrderDate = order.OrderDate;
+        //        model.OrderNumber = order.OrderNumber;
+        //        model.CustomerId = order.CustomerId;
+        //        model.TotalAmount = order.TotalAmount;
+        //        db.Order.Add(model);
+        //        db.SaveChanges();
+        //    }
+        //}
         public void createOrder(OrderViewModel order)
         {
             using (ShopDBEntities db = new ShopDBEntities())
             {
-                int Id = (db.Order.ToList().Count != 0) ?
-                    (from o in db.Order orderby o.Id descending select o.Id).First() + 1 : 1;
                 Order model = new Order();
+                int Id = (db.Order.ToList().Count != 0) ?
+                    (from o in db.Order orderby o.Id descending select o.Id).First() + 1 : 1;                
                 model.OrderDate = order.OrderDate;
                 model.OrderNumber = order.OrderNumber;
                 model.CustomerId = order.CustomerId;
@@ -103,8 +116,7 @@ namespace XSIS.Shop.Repository
                 Order model = new Order();
                 model.Id = order.Id;
                 model.OrderDate = order.OrderDate;
-                model.OrderNumber = order.OrderNumber;
-                model.CustomerId = order.CustomerId;
+                model.OrderNumber = order.OrderNumber;                
                 model.TotalAmount = order.TotalAmount;
                 model.CustomerId = order.CustomerId;
                 db.Entry(model).State = EntityState.Modified;
@@ -202,18 +214,29 @@ namespace XSIS.Shop.Repository
                 return (listVM);
             }
         }
-        //public OrderViewModel getCurrentId()
-        //{
-        //    using(ShopDBEntities db = new ShopDBEntities())
-        //    {
-        //        OrderViewModel orderVM = new OrderViewModel();
-        //        List<Order> OrderDB = db.Order.ToList();
-        //        int id = (db.Order.ToList().Count != 0)?
-        //    }
-        //    return OrderVM;
 
-        //}
-
+        public OrderViewModel getCurrentId()
+        {
+            using (ShopDBEntities db = new ShopDBEntities())
+            {
+                OrderViewModel orderVM = new OrderViewModel();
+                List<Order> OrderDB = db.Order.ToList();
+                int id = (db.Order.ToList().Count != 0) ?
+                    (from o in OrderDB orderby o.Id descending select o.Id).First() + 1 : 1;
+                string bulan = (DateTime.Today.Month) < 10 ? ("0" + DateTime.Today.Month).ToString() : (DateTime.Today.Month).ToString();
+                string tahun = (DateTime.Today.Year % 2000).ToString();
+                if (id < 10)
+                {
+                    orderVM.OrderNumber = "ORD" + tahun + bulan + "00" + id.ToString();
+                }
+                else
+                {
+                    orderVM.OrderNumber = "ORD" + tahun + bulan + "0" + id.ToString();
+                }
+                orderVM.OrderDate = (DateTime.Now.Date);
+                return orderVM;
+            }
+        }
         public List<Product> GetProduct()
         {
             using (ShopDBEntities db = new ShopDBEntities())
@@ -224,3 +247,5 @@ namespace XSIS.Shop.Repository
         }
     }
 }
+
+      
